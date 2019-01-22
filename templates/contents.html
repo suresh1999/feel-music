@@ -1,0 +1,145 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:url" content={{ request.build_absolute_uri }}/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:title" content="{{ object.name }}"/>
+    <meta property="og:description" content="{{ object.meaning | slice:":255" }}"/>
+    <meta property="og:image" content="{{ object.album.img.url }}"/>
+    <title>{{ object.name }}</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'materialize/css/materialize.css' %}">
+    <link rel="stylesheet" href="{% static 'css/master.css' %}">
+</head>
+<body>
+<div class="navbar">
+    <nav class="main_nav">
+        <div class="nav-wrapper">
+          <img id="navLogo" src="\static\img\musixim logo2.png" alt="">
+          <a href="#!" class="brand-logo">Musixim</a>
+            <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+            <ul id="navElements" id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a href="{% url 'albums' %}">Album</a></li>
+                <li><a href="{% url 'songs' %}">Songs</a></li>
+                
+              </ul>
+              <ul class="side-nav" id="mobile-demo">
+                <li><a href="{% url 'albums' %}">Album</a></li>
+                <li><a href="{% url 'songs' %}">Songs</a></li>
+              </ul>
+        </div>
+    </nav>
+</div>
+
+<div class="container">
+    <div class="contents">
+        <div class="row">
+
+            <form method="POST" action="{% url 'search' %}">{% csrf_token %}<input id="mainSearch" type="text"
+                                                                                   name="item"
+                                                                                   placeholder="Search for a album,song or a composer">
+            </form>
+            <h4>{{ object.name }}</h4>
+            <div class="tile col l5 s12 m5  ">
+                <img id="contentsImg" width="452.46px" height="308px" src="{{ object.album.img.url }}" alt="{{ object.name }}">
+            </div>
+            <div class="col l1  m1">
+
+            </div>
+            <div class="links col l5 s12 m5">
+                <div id="youtubeLink" class="row">
+                    <iframe width="452.46px" height="226.6px" src="{{ object.video_link }}"></iframe>
+                </div>
+                <div id="downloadLink" class="chip">
+                  <div  class="row">
+                      <a id="downloadURL" href="{{ object.download_link }}">Download the mp3 here</a>
+                  </div>
+                </div>
+
+
+            </div>
+
+        </div>
+        <hr>
+        <h5 id="content_title">Interpretion and Review:</h5>
+        <br>
+        <p id="main_content">
+            {{ object.meaning }}
+        </p>
+    </div>
+
+<div id="fb-root"></div>
+<script>(function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s);
+    js.id = id;
+    js.src = 'https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.11&appId=734637876733290';
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
+</script>
+<script>window.twttr = (function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0],
+        t = window.twttr || {};
+    if (d.getElementById(id)) return t;
+    js = d.createElement(s);
+    js.id = id;
+    js.src = "https://platform.twitter.com/widgets.js";
+    fjs.parentNode.insertBefore(js, fjs);
+
+    t._e = [];
+    t.ready = function (f) {
+        t._e.push(f);
+    };
+
+    return t;
+}(document, "script", "twitter-wjs"));</script>
+<div class="fb-share-button"
+    data-href="{{ request.build_absolute_uri }}"
+    data-layout="button_count">
+  </div>
+<a class="twitter-share-button"
+   href="https://twitter.com/share"
+   data-size="large"
+   data-text=""
+   data-url="{{ request.build_absolute_uri }}"
+   data-hashtags=""
+   data-via=""
+   data-related="twitterapi,twitter">
+    Tweet
+</a>
+</div>
+<!-- Footer -->
+<div class="page-footer">
+    <div class="container">
+      <div class="row">
+        <div class="col l6 s12">
+          <h5 class="white-text">About us</h5>
+          <p class="grey-text text-lighten-4">This is a site which gives the meaning of a song line by line</p>
+        </div>
+        <div class="col l4 offset-l2 s12">
+          <h5 class="white-text">Contact Developer</h5>
+          <ul>
+            <li><a class="grey-text text-lighten-3" href="https://github.com/suresh1999">Github</a></li>
+            <li><a class="grey-text text-lighten-3" href="https://facebook.com/sureshkumar1999">Facebook</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <div class="container">
+      Developed by Suresh Kumar 
+      <a class="grey-text text-lighten-4 right" href="#!">Powered by Django</a>
+      </div>
+    </div>
+  </div>
+
+<script type="text/javascript" src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'materialize\js\materialize.js' %}"></script>
+<script src="https://unpkg.com/scrollreveal/dist/scrollreveal.min.js"></script>
+<script type="text/javascript" src="{% static 'js/master.js' %}"></script>
+</body>
+</html>

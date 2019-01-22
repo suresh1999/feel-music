@@ -1,0 +1,58 @@
+.main_nav{
+  background-color: #148af4;
+  width: 100%;
+}
+
+nav .brand-logo{
+  padding-left: 5%;
+}
+
+.drag-target{
+  width:0px;
+}
+
+#mobile-demo{
+  background-color:white;
+}
+
+div .drag-target{
+  width:0%;
+}
+nav ul a {
+  padding-right: 40%
+}
+#navElements{
+  padding-right: 5%;
+}
+
+.tile
+{   margin-top: 5%;
+    height: 308px;
+    width: 452.46px;
+    background-color: white;
+    }
+
+  #youtubeLink{
+   height: 226.6px;
+   background-color: black;
+   margin-top: 12.5%;
+   margin-left: -15%;
+   width: 452.46px;
+  }
+  #downloadLink{
+   margin-top:-3%;
+   width: 140%;
+   height: 42px;
+   background-color: grey;
+   margin-left: -15%;
+  }
+
+#main_content{
+  padding-top: 0%;
+  text-indent: 20px;
+}
+
+
+h3{
+  color: white;
+}
